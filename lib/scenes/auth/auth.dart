@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:inventory/widgets/commonButton.dart';
+import 'package:inventory/widgets/facebook.dart';
+import 'package:inventory/widgets/google.dart';
 import 'package:inventory/widgets/input.dart';
 
 class Auth extends StatelessWidget {
@@ -66,33 +68,51 @@ class Auth extends StatelessWidget {
                 ),
               ),
             ),
-            InkWell(
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: InkWell(
+                child: Text(
+                  'Forgot Password?',
+                  style: TextStyle(color: Colors.white),
+                ),
+                onTap: () {
+                  print('Make the on tap method do something');
+                },
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
               child: Text(
-                'Forgot Password?',
+                'Or',
                 style: TextStyle(color: Colors.white),
               ),
-              onTap: () {
-                print('Make the on tap method do something');
-              },
             ),
-            Text(
-              'Or',
-              style: TextStyle(color: Colors.white),
+            Container(
+              padding: const EdgeInsets.only(left: 32, right: 32),
+              child: Column(
+                children: <Widget>[
+                  GoogleButton(),
+                  FacebookButton(),
+                ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Text("Don't have an account? "),
-                InkWell(
-                  child: Text(
-                    "Create One",
-                    style: TextStyle(color: Colors.white),
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text("Don't have an account? "),
+                  InkWell(
+                    child: Text(
+                      "Create One",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    onTap: () {
+                      print("Make the on tap method do something");
+                    },
                   ),
-                  onTap: () {
-                    print("Make the on tap method do something");
-                  },
-                ),
-              ],
+                ],
+              ),
             ),
           ],
         ),
