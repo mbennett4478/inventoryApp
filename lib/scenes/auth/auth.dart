@@ -73,7 +73,10 @@ class Auth extends StatelessWidget {
               child: InkWell(
                 child: Text(
                   'Forgot Password?',
-                  style: TextStyle(color: Colors.white),
+                  style: TextStyle(
+                    color: Colors.white,
+                    decoration: TextDecoration.underline,
+                  ),
                 ),
                 onTap: () {
                   print('Make the on tap method do something');
@@ -105,7 +108,10 @@ class Auth extends StatelessWidget {
                   InkWell(
                     child: Text(
                       "Create One",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(
+                        color: Colors.white,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                     onTap: () {
                       print("Make the on tap method do something");
