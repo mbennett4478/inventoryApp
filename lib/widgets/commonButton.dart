@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 
 class CommonButton extends StatelessWidget {
   CommonButton({
+    this.onPressed,
     this.buttonText = '',
   });
 
+
+  final Function onPressed;
   final String buttonText;
 
   @override
@@ -17,7 +20,7 @@ class CommonButton extends StatelessWidget {
         child: RaisedButton(
           color: Color.fromRGBO(67, 64, 81, 1.0),
           elevation: 10,
-          onPressed: () {},
+          onPressed: onPressed  ?? () {},
           child: Text(
             buttonText,
             style: TextStyle(color: Colors.white),

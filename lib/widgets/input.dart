@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 
 class Input extends StatelessWidget {
   Input({
+    Key key,
     this.hintText = '',
     this.prefixIcon,
     this.onChange,
     this.obscureText = false,
+    this.validator,
   });
 
+  final Function validator;
   final bool obscureText;
   final String hintText;
   final IconData prefixIcon;
@@ -17,6 +20,7 @@ class Input extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      key: key,
       obscureText: obscureText,
       style: TextStyle(color: Colors.white),
       decoration: InputDecoration(
@@ -32,13 +36,8 @@ class Input extends StatelessWidget {
         hintText: this.hintText,
         hintStyle: TextStyle(color: Colors.white),
       ),
-      onChanged: onChange != null ? onChange : (value) {},
-      validator: (value) {
-        if (value.isEmpty) {
-          return 'Please enter a valid value';
-        }
-        return null;
-      },
+      onChanged: onChange ?? (_) { return null; },
+      validator: validator ?? (_) { return null; },
     );
   }
 }
