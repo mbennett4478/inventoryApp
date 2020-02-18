@@ -1,7 +1,11 @@
-class BaseService<T> {
-  String _baseUrl = "http://localhost:3000";
+class Base<T> {
+  String _baseUrl = 'http://localhost:4000/api/v1';
 
-  T get(String endpoint) {
-    return null;
+  Future<T> get(String url) async {
+
+  }
+
+  Future<T> post(String url) async {
+
   }
 }

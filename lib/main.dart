@@ -15,10 +15,6 @@ class MyApp extends StatelessWidget {
           display1: TextStyle(
             color: Colors.white,
           ),
-//        primaryTextTheme: TextTheme(
-//          display1: TextStyle(
-//              color: Colors.white,
-//          ),
         ),
         scaffoldBackgroundColor: Color.fromRGBO(84, 81, 100, 1.0),
       ),

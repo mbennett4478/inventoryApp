@@ -8,4 +8,9 @@ class User {
     this.firstName,
     this.lastName,
   });
+
+  User.fromJson(Map<String, dynamic> json) :
+    email = json['email'],
+    firstName = json['firstName'],
+    lastName = json['lastName'];
 }
