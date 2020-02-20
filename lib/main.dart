@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:inventory/providers/token.dart';
 import 'package:inventory/scenes/auth/auth.dart';
+import 'package:inventory/services/api.dart';
+import 'package:inventory/services/token.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -8,23 +11,33 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: TextTheme(
-          display1: TextStyle(
-            color: Colors.white,
-          ),
+    return MultiProvider(
+      providers: [
+        Provider<TokenService>(
+          create: (_) => TokenService(),
         ),
-        scaffoldBackgroundColor: Color.fromRGBO(84, 81, 100, 1.0),
-      ),
-      routes: {
-        '/Auth': (_) => Auth()
-      },
-      home: ChangeNotifierProvider<CounterModel>(
-        create: (_) => CounterModel(),
-        child: Auth(),
-      ),
+        ProxyProvider<TokenService, TokenProvider>(
+          update: (BuildContext context, TokenService value, TokenProvider previous) => TokenProvider(value),
+        ),
+        ProxyProvider<TokenProvider, ApiService>(
+          update: (BuildContext context, TokenProvider value, ApiService previous) => ApiService(value),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData(
+          textTheme: TextTheme(
+            display1: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+          scaffoldBackgroundColor: Color.fromRGBO(84, 81, 100, 1.0),
+        ),
+        routes: {
+          '/Auth': (_) => Auth()
+        },
+        home: Auth(),
+      )
     );
   }
 }

@@ -1,12 +1,13 @@
 import 'package:inventory/models/token.dart';
+import 'package:inventory/providers/token.dart';
 
 class ApiService<T> {
   String _baseUrl = 'http://localhost:4000/api/v1';
-  TokenPair _tokenPair;
+  TokenProvider _tokenProvider;
 
-  ApiService(TokenPair tokenPair) {
-    _tokenPair = tokenPair;
-  }
+  ApiService(this._tokenProvider);
+
+  TokenProvider get tokenProvider => _tokenProvider;
 
   Future<T> get(String url) async {
 

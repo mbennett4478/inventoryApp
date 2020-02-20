@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory/services/api.dart';
 import 'package:inventory/widgets/commonButton.dart';
 import 'package:inventory/widgets/facebook.dart';
 import 'package:inventory/widgets/google.dart';
 import 'package:inventory/widgets/input.dart';
+import 'package:provider/provider.dart';
 
 class Auth extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    final apiService = Provider.of<ApiService>(context);
+    print(apiService.tokenProvider.tokenPair);
     return Scaffold(
       body: Center(
         child: Column(

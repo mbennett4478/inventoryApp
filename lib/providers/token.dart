@@ -9,13 +9,14 @@ class TokenProvider with ChangeNotifier {
   TokenProvider(TokenService tokenService) {
     _loading = true;
     notifyListeners();
-    tokenService.getTokenPair().then((res) {
+    tokenService.getTokenPair().then((tokenPair) {
       _loading = false;
-      set(res);
+      set(tokenPair);
     });
   }
 
   TokenPair get tokenPair => _tokenPair;
+  bool get loading => _loading;
 
   void set(TokenPair tokenPair) {
     _tokenPair = tokenPair;

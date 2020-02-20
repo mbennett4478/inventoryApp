@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:inventory/models/token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
