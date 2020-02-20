@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:inventory/models/token.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class Tokens {
+class TokenService {
   Future<TokenPair> getTokenPair() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     var stringTokenPair = prefs.get('tokenpair');

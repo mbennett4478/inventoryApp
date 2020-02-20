@@ -1,9 +1,9 @@
-import 'package:inventory/models/token.dart';
+import 'package:inventory/services/api.dart';
 
-class Auth {
-  String _baseUrl = 'http://localhost:4000/api/v1/';
+class AuthService {
+  ApiService _apiService;
 
-  Future<TokenPair> signIn(String username, String password) async {
-    var response = await
+  AuthService(ApiService apiService) {
+    _apiService = apiService;
   }
 }
