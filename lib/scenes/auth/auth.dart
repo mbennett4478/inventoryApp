@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inventory/services/api.dart';
+import 'package:inventory/providers/token.dart';
+import 'package:inventory/providers/user.dart';
 import 'package:inventory/widgets/commonButton.dart';
 import 'package:inventory/widgets/facebook.dart';
 import 'package:inventory/widgets/google.dart';
@@ -12,8 +13,9 @@ class Auth extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final apiService = Provider.of<ApiService>(context);
-    print(apiService.tokenProvider.tokenPair);
+    final userProvider = Provider.of<UserProvider>(context);
+
+    print("loading: ${userProvider.loading}, user: ${userProvider.currentUser}");
     return Scaffold(
       body: Center(
         child: Column(

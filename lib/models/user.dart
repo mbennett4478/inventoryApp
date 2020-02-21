@@ -1,7 +1,10 @@
+import 'package:inventory/models/token.dart';
+
 class User {
   String email;
   String firstName;
   String lastName;
+  TokenPair tokenPair;
 
   User({
     this.email,

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:inventory/providers/test.dart';
 import 'package:inventory/providers/token.dart';
 import 'package:inventory/scenes/auth/auth.dart';
 import 'package:inventory/services/api.dart';
 import 'package:inventory/services/token.dart';
+import 'package:inventory/services/user.dart';
 import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
@@ -16,12 +18,19 @@ class MyApp extends StatelessWidget {
         Provider<TokenService>(
           create: (_) => TokenService(),
         ),
-        ProxyProvider<TokenService, TokenProvider>(
-          update: (BuildContext context, TokenService value, TokenProvider previous) => TokenProvider(value),
+        ChangeNotifierProvider<TestProvider>(
+          create: (_) => TestProvider(),
+        ),
+        ChangeNotifierProxyProvider<TokenService, TokenProvider>(
+          create: (BuildContext context) => TokenProvider(TokenService()),
+          update: (_, tokenService, __) => TokenProvider(tokenService),
         ),
         ProxyProvider<TokenProvider, ApiService>(
           update: (BuildContext context, TokenProvider value, ApiService previous) => ApiService(value),
-        )
+        ),
+//        ChangeNotifierProxyProvider<UserService>(
+//
+//        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
