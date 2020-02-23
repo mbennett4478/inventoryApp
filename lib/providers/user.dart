@@ -23,7 +23,7 @@ class UserProvider extends ChangeNotifier {
     _loading = true;
     notifyListeners();
 
-    var user = await _userService.fetchCurrentUser();
+    var user = await _userService.getCurrentUser();
     _currentUser = user;
     _loading = false;
     notifyListeners();
