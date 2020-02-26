@@ -1,52 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:inventory/providers/test.dart';
-import 'package:inventory/providers/token.dart';
-import 'package:inventory/scenes/auth/auth.dart';
-import 'package:inventory/services/api.dart';
-import 'package:inventory/services/token.dart';
-import 'package:inventory/services/user.dart';
+import 'package:inventory/models/user.dart';
+import 'package:inventory/services/auth_service.dart';
+import 'package:inventory/services/auth_service_adapter.dart';
+import 'package:inventory/widgets/auth_widget.dart';
+import 'package:inventory/widgets/auth_widget_builder.dart';
 import 'package:provider/provider.dart';
+
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+
+  const MyApp({
+    this.initialAuthServiceType = AuthServiceType.bsmple,
+  });
+
+  final AuthServiceType initialAuthServiceType;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider<TokenService>(
-          create: (_) => TokenService(),
-        ),
-        ChangeNotifierProvider<TestProvider>(
-          create: (_) => TestProvider(),
-        ),
-        ChangeNotifierProxyProvider<TokenService, TokenProvider>(
-          create: (BuildContext context) => TokenProvider(TokenService()),
-          update: (_, tokenService, __) => TokenProvider(tokenService),
-        ),
-        ProxyProvider<TokenProvider, ApiService>(
-          update: (BuildContext context, TokenProvider value, ApiService previous) => ApiService(value),
-        ),
-//        ChangeNotifierProxyProvider<UserService>(
-//
-//        ),
-      ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          textTheme: TextTheme(
-            display1: TextStyle(
-              color: Colors.white,
-            ),
+        Provider<AuthService>(
+          create: (_) => AuthServiceAdapter(
+            initialAuthServiceType: initialAuthServiceType,
           ),
-          scaffoldBackgroundColor: Color.fromRGBO(84, 81, 100, 1.0),
+          dispose: (_, AuthService authService) => authService.dispose(),
         ),
-        routes: {
-          '/Auth': (_) => Auth()
+      ],
+      child: AuthWidgetBuilder(
+        builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              textTheme: TextTheme(
+                display1: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              scaffoldBackgroundColor: Color.fromRGBO(84, 81, 100, 1.0),
+            ),
+            home: AuthWidget(userSnapshot: userSnapshot),
+          );
         },
-        home: Auth(),
-      )
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:inventory/models/user.dart';
-import 'package:inventory/providers/token.dart';
 import 'package:inventory/services/user.dart';
 
 class UserProvider extends ChangeNotifier {

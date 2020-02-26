@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:inventory/providers/token.dart';
-import 'package:inventory/providers/user.dart';
 import 'package:inventory/widgets/commonButton.dart';
 import 'package:inventory/widgets/facebook.dart';
 import 'package:inventory/widgets/google.dart';
 import 'package:inventory/widgets/input.dart';
-import 'package:provider/provider.dart';
 
 class Auth extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-    final userProvider = Provider.of<UserProvider>(context);
-
-    print("loading: ${userProvider.loading}, user: ${userProvider.currentUser}");
+//    final userProvider = Provider.of<UserProvider>(context);
+//
+//    print("loading: ${userProvider.loading}, user: ${userProvider.currentUser}");
     return Scaffold(
       body: Center(
         child: Column(
